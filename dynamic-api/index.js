@@ -6,6 +6,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors())
+app.use(express.json())
 
 app.get("/", (req, res) => {
     res.send("HELLO FROM dynamc")
@@ -32,6 +33,15 @@ app.get("/user/:id", (req, res) => {
     res.send(user)
 
 });
+
+app.post("/users", (req, res) => {
+
+    console.log(req)
+    console.log(req.body)
+
+    res.send("post success")
+
+})
 
 app.get("/fruits", (req, res) => {
     res.send(['mango', 'apple', 'orange'])

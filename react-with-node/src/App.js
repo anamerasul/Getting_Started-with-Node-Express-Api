@@ -18,6 +18,35 @@ function App() {
 
 
   }, [])
+
+  const handleAdduser = (e) => {
+    e.preventDefault()
+
+    const name = e.target.name.value
+
+    const email = e.target.email.value
+
+    console.log(name, email)
+
+    const user = { name, email }
+    // post data to server
+
+    fetch('http://localhost:5000/users', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
+  }
   return (
     <div className="App">
       <h1>My own data {users.length}</h1>
@@ -25,6 +54,13 @@ function App() {
       {
         users.map(user => <li key={user.id}>{user.name}</li>)
       }
+
+      <form onSubmit={handleAdduser}>
+
+        <input type="text" name="name" placeholder="name" />
+        <input type="text" name="email" placeholder="email" />
+        <input type="submit" value="add user" />
+      </form>
     </div>
   );
 }
