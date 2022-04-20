@@ -58,7 +58,7 @@ function App() {
         users.map(user => <li key={user.id}>{user.name}</li>)
       }
 
-      <form onSubmit={handleAdduser}>
+      <form onSubmit={handleAdduser} >
 
         <input type="text" name="name" placeholder="name" />
         <input type="text" name="email" placeholder="email" />
