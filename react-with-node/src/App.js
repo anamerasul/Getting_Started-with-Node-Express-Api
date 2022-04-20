@@ -31,7 +31,7 @@ function App() {
     const user = { name, email }
     // post data to server
 
-    fetch('http://localhost:5000/users', {
+    fetch('http://localhost:5000/user', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -40,9 +40,12 @@ function App() {
     })
       .then(response => response.json())
       .then(data => {
+        const newUsers = [...users, data]
+        setUser(newUsers)
         console.log('Success:', data);
       })
       .catch((error) => {
+
         console.error('Error:', error);
       });
 
