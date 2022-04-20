@@ -1,8 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
 
 const port = process.env.PORT || 5000;
+
+app.use(cors())
 
 app.get("/", (req, res) => {
     res.send("HELLO FROM dynamc")
@@ -28,6 +31,15 @@ app.get("/user/:id", (req, res) => {
     const user = users[id];
     res.send(user)
 
+});
+
+app.get("/fruits", (req, res) => {
+    res.send(['mango', 'apple', 'orange'])
+
+});
+
+app.get("/fruits/mango/fazle", (req, res) => {
+    res.send('saur asaur flavour')
 });
 app.listen(port, () => {
     console.log("Lisening to port", port)
